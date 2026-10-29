@@ -1,0 +1,14 @@
+-:: Lecture note ::-
+- aggregate all rows by a specific column. 
+- often used with aggregate functions eg. SUM(), MAX(), MIN(), AVG(), COUNT(), etc.
+- WHERE clause after GROUP BY dont go well together normally. instead we use the word HAVING, it just do the same thing as WHERE.
+- The HAVING clause is used to filter the result of the GROUP BY statement based on the specified conditions.
+
+*** Commands ***
+-- syntax
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);

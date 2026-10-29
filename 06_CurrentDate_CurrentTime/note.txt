@@ -1,0 +1,15 @@
+-:: Lecture note ::-
+- CURRENT_DATE() + 1; will refer to tommorow's date.
+  CURRENT_DATE() - 1; similarily will refer to yesterday's date.
+  similar can be done with CURRENT_TIME() and NOW(), like adding or subtracting seconds
+
+*** Commands ***
+
+-- This function will return a current date.
+CURRENT_DATE()
+
+-- This function will return a current time.
+CURRENT_TIME()
+
+-- This function will return a datetime.
+NOW()

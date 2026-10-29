@@ -1,0 +1,38 @@
+-:: Lecture note ::-
+- SQL = Structured query  language.
+used to create, retrieve , update and delete data from a database.
+- Two types of data base:
+Relational: 
+data represented in tabular form. Tables form relationship with one another. utilizes data by sql.
+Non-relational: 
+data represented in non-tabular form. Utilizes data by nosql(Not only sql).
+- DBMS(Database Management system) a software to create, store and manage database.
+- Database is like a folder or a container. Tables are like files found within the folder.
+- "sys" is the internal database that mysql uses.
+
+
+
+*** Commands ***
+
+-- create database
+CREATE DATABASE databasename;
+
+
+-- select database
+USE databasename;
+
+
+-- delete database
+DROP DATABASE databasename;
+
+
+-- set database read only or not read only
+ALTER DATABASE databasename READ ONLY = 1; 
+or 
+ALTER DATABASE databasename READ ONLY = 0;
+
+
+*** More Commands ***
+
+-- rename database (src: https://www.geeksforgeeks.org/sql-query-to-rename-database/)
+RENAME DATABASE current_database_name TO new_database_name; 

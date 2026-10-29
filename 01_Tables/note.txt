@@ -1,0 +1,62 @@
+-:: Lecture note ::-
+- Tables in a relational database consists of rows and column. 
+
+*** Commands ***
+
+-- create Tables
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+
+
+-- select Tables (Note: * means all)
+SELECT * FROM tablename;
+
+
+-- rename Table
+RENAME TABLE old_name TO new_name;
+
+
+-- delete Table
+DROP TABLE tablename;
+
+
+-- adding table column
+ALTER TABLE table_name
+ADD column_name datatype;
+
+
+-- rename table column
+ALTER TABLE table_name
+RENAME COLUMN  old_column_name to new_column_name;
+
+
+-- modify column datatype
+ALTER TABLE table_name
+MODIFY COLUMN column_name new_datatype;
+
+
+-- modify column position
+ALTER TABLE table_name
+MODIFY COLUMN column_name_to_be_moved datatype    
+AFTER column_name;
+
+or
+
+ALTER TABLE table_name
+MODIFY COLUMN column_name_to_be_moved datatype    
+FIRST;
+
+
+-- delete column
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+
+*** More Commands ***
+
+-- deletes the data inside a table(src: https://www.w3schools.com/SQL/sql_ref_truncate_table.asp)
+TRUNCATE TABLE table_name;

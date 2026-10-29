@@ -1,0 +1,16 @@
+-:: Lecture note ::-
+- virtual tables based on the result-set of an sql statement.
+- The fields and columns in a view are from  one or more real tables in database.
+- They are not real tables, but can be interacted with as if they were real.
+- views are up to date with respect to the real tables they refer to.(changes in real tables reflect in views)
+- views help avoiding repeating data.
+
+*** Commands ***
+-- syntax
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+
+-- drop view
+DROP VIEW view_name;

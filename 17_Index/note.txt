@@ -1,0 +1,51 @@
+-:: Lecture note ::-
+- INDEX(Btree data structure)
+- Indexes are used to find values within a specific column more quickly.
+- Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, 
+  they are just used to speed up searches/queries.
+- MySQl normally searches sequentially through a column. The longer the column, the more expensive the operation is.
+- UPDATE takes more time, SELECT takes less time. By the use of INDEX for that table
+- a primary key is also an index for a table.
+
+
+NOTE:- according to mysql spec on multicolumn indexes;
+if the "name" index is an index over the last_name and first_name columns for table "test".
+the name index is used for lookups in the following queries:
+- SELECT * FROM test WHERE last_name='Jones';
+- SELECT * FROM test WHERE last_name='Jones' AND first_name='John';
+- SELECT * FROM test WHERE last_name='Jones' AND (first_name='John' OR first_name='Jon');
+- SELECT * FROM test WHERE last_name='Jones' AND first_name >='M' AND first_name < 'N';
+
+the name index is not used for lookups in the following queries:
+- SELECT * FROM test WHERE first_name='John';
+- SELECT * FROM test WHERE last_name='Jones' OR first_name='John';
+
+
+
+*** Commands ***
+-- Creates an index on a table.
+so for this following table searching via column1 will be faster compared to searching by other columns.
+If we want to search table with just column1 faster.
+
+CREATE INDEX index_name
+ON table_name (column1);
+
+-- Creates an index on a table with multiple column. 
+so for this following table searching via column1 will be fast compared to searching by other columns. Also,searching via 
+column1 and column2 together will be fast but the order must be equal to order specified while making index.
+But searching alone via column2 won't utilize the index.
+So this works, If we want to search table with column1 or with column1 and column2 together faster.
+
+CREATE INDEX index_name
+ON table_name (column1, column2);
+
+and so on for multiple column Indexes
+
+CREATE INDEX index_name
+ON table_name (column1, column2, ...);
+
+-- The DROP INDEX statement is used to delete an index in a table.
+ALTER TABLE table_name
+DROP INDEX index_name;
+
+

@@ -1,0 +1,20 @@
+-:: Lecture note ::-
+- UNION combines the result of two or more select statements.
+- UNION AND UNION ALL statement to work, requires the select statements to have same number of columns.
+- UNION ALL includes duplicates if more than one value is found within each table
+- Note: The column names in the result-set are usually equal to the column names in the first SELECT statement.
+        The columns must also have similar/compatible data types and the columns in every SELECT statement in UNION/UNION ALL 
+        must also be in the same order( if column names in both select statements are equal) to avoid confusing result.
+
+
+*** Commands ***
+-- syntax
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+or 
+
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;

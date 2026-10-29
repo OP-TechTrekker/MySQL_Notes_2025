@@ -1,0 +1,14 @@
+-:: Lecture note ::-
+- SELF JOIN is just any type of join, where u join together another copy of a table to itself.
+- used to compare rows of same table, helps display hierarchy of data.
+- in SELF JOIN, we can use different types of join for a table to join with itself.
+
+Note: 
+in this section i made employee_id primary key of employees so i can do upadtes on table without toggling safety settings.
+nothing to do with the concept of self join.
+
+*** Commands ***
+-- syntax
+SELECT column_name(s)
+FROM table1 AS T1 JOINTYPE table1 AS T2
+ON condition;

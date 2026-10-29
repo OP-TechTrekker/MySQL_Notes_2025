@@ -1,0 +1,4 @@
+-:: Lecture note ::-
+- Logical operators are used to combine more than one condition. Logical operators can be used in combination.
+- AND, OR, NOT, IN, BETWEEN
+- sql operators: https://www.w3schools.com/sql/sql_operators.asp

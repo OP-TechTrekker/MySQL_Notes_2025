@@ -1,0 +1,3 @@
+-:: Lecture note ::-
+- a query within another query. like query(subquery)
+- a subquery is within another query enclosed with parentheses, the values returned from the subquery would be used by outer query.

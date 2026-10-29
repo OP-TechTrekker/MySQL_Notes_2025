@@ -1,0 +1,12 @@
+-:: Lecture note ::-
+- Limit clause is used to limit the number of record that are returned by a query.
+- Its useful when working with lots of data(eg Displaying a large data on pages(pagination))
+
+*** Commands ***
+-- select first n rows of returned records:
+SELECT column(s) FROM table_name
+LIMIT n;
+
+-- select n rows, after the number of offset rows of returned records:
+SELECT column(s) FROM table_name
+LIMIT offset_number, n;

@@ -1,0 +1,63 @@
+Generally, triggers are of two types according to the SQL standard: row-level triggers and statement-level triggers.
+- Row-Level Trigger: It is a trigger, which is activated for each row by a triggering statement such as insert, update, or delete. 
+For example, if a table has inserted, updated, or deleted multiple rows, the row trigger is fired automatically for each row 
+affected by the insert, update, or delete statement.
+- Statement-Level Trigger: It is a trigger, which is fired once for each event that occurs on a table regardless of how many rows 
+are inserted, updated, or deleted.
+NOTE: We should know that MySQL doesn't support statement-level triggers. It provides supports for row-level triggers only.
+
+trigger_name: It is the name of the trigger that we want to create.
+It is to make sure that the trigger name should be unique within the schema.
+
+trigger_time: It is the trigger action time, which should be either BEFORE or AFTER. It is the required parameter while defining a 
+trigger. It indicates that the trigger will be invoked before or after each row modification occurs on the table.
+
+trigger_event: It is the type of operation name that activates the trigger. It can be either INSERT, UPDATE, or DELETE operation.
+
+BEGIN END Block: Finally, we will specify the statement for execution when the trigger is activated. If we want to execute multiple
+statements, we will use the BEGIN END block that contains a set of queries to define the logic for the trigger.
+
+The trigger body can access the column's values, which are affected by the DML statement. The NEW and OLD modifiers are used to 
+distinguish the column values BEFORE and AFTER the execution of the DML statement. We can use the column name with NEW and OLD 
+modifiers as OLD.col_name and NEW.col_name. 
+The OLD.column_name indicates the column of an existing row before the updation or deletion occurs. 
+(i think in insertion OLD.column_name is NULL)
+NEW.col_name indicates the column of a new row that will be inserted or an existing row after it is updated.
+(i think in deletion NEW.column_name is NULL)
+
+source: https://www.tpointtech.com/mysql-create-trigger
+
+In an INSERT trigger, only NEW.col_name can be used; there is no old row. 
+In a DELETE trigger, only OLD.col_name can be used; there is no new row. 
+In an UPDATE trigger, you can use OLD.col_name to refer to the columns of a row before it is updated and NEW.col_name 
+to refer to the columns of the row after it is updated.
+
+A column named with OLD is read only. You can refer to it (if you have the SELECT privilege), but not modify it. 
+You can refer to a column named with NEW if you have the SELECT privilege for it. In a BEFORE trigger, you can also change 
+its value with SET NEW.col_name = value if you have the UPDATE privilege for it. This means you can use a trigger to modify the 
+values to be inserted into a new row or used to update a row. (Such a SET statement has no effect in an AFTER trigger because the 
+row change has already occurred.)
+
+In a BEFORE trigger, the NEW value for an AUTO_INCREMENT column is 0, not the sequence number that is generated automatically 
+when the new row actually is inserted.
+By using the BEGIN ... END construct, you can define a trigger that executes multiple statements.
+
+source: https://dev.mysql.com/doc/refman/8.4/en/trigger-syntax.html
+
+-:: Lecture note ::-
+- when an event happens (like INSERT, UPDATE,DELETE); do something (eg. check data, handle error, audit table. etc)
+
+*** Commands ***
+-- create trigger
+DELIMITER $$
+CREATE TRIGGER trigger_name  
+trigger_time trigger_event ON table_name 
+FOR EACH ROW  
+BEGIN    
+    --trigger code  
+END $$   
+DELIMITER ;
+
+-- MySQL DROP Trigger
+DROP TRIGGER [IF EXISTS] [schema_name.]trigger_name;  
+example: DROP TRIGGER IF EXISTS employeedb.before_update_salaries; 

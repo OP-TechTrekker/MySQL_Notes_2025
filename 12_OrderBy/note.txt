@@ -1,0 +1,21 @@
+-:: Lecture note ::-
+- Orderby clause sorts the result of a query in ascending(default is ASC) or descending(DESC) order based on the column we list.
+- ORDER BY Several Columns: The following SQL statement selects all customers from the "Customers" table, sorted by the "Country" 
+  and the "CustomerName" column. This means that it orders by Country, but if some rows have the same Country, 
+  it orders them by CustomerName:
+
+  SELECT * FROM Customers
+  ORDER BY Country, CustomerName;
+
+- Using Both ASC and DESC: The following SQL statement selects all customers from the "Customers" table, 
+  sorted ascending by the "Country" and descending by the "CustomerName" column. This means that it orders by Country in asc, 
+  but if some rows have the same Country, it orders them by CustomerName in desc:
+
+  SELECT * FROM Customers
+  ORDER BY Country ASC, CustomerName DESC;
+
+*** Commands ***
+-- syntax
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;

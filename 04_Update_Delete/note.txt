@@ -1,0 +1,23 @@
+-:: Lecture note ::-
+- safe update(which rejects UPDATE and DELETE with no restrictions). 
+to disable: SET SQL_SAFE_UPDATES = 0;
+to enable: SET SQL_SAFE_UPDATES = 1;
+
+- Be careful when updating records in a table! Notice the WHERE clause in the UPDATE statement
+The WHERE clause specifies which record(s) that should be updated.
+If you omit the WHERE clause, all records in the table will be updated!
+
+- Be careful when deleting records in a table! Notice the WHERE clause in the DELETE statement. 
+The WHERE clause specifies which record(s) should be deleted. 
+If you omit the WHERE clause, all records in the table will be deleted!
+
+
+*** Commands ***
+
+-- to modify the existing records in a table.
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+-- to delete existing records in a table.
+DELETE FROM table_name WHERE condition;

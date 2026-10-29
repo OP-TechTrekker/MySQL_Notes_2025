@@ -1,0 +1,23 @@
+*** Commands ***
+
+
+-- select all data from table
+SELECT * FROM tablename;
+
+
+-- select specific data column from table (U can change the order of the column)
+SELECT column1, column2, ... FROM tablename;
+
+
+-- select specific data from table
+SELECT * FROM tablename
+WHERE condition;
+
+or 
+
+SELECT column1, column2, ... FROM tablename
+WHERE condition;
+
+-- to select only distinct (different) values.
+SELECT DISTINCT column1, column2, ...
+FROM table_name;

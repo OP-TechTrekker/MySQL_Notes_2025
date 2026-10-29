@@ -1,0 +1,32 @@
+-:: Lecture note ::-
+- ON DELETE SET NULL = When a PK is deleted in the parent table column, replace the matching value FK with NULL in the child table.
+- ON DELETE CASCADE = When a PK is deleted in the parent table column, delete the row having matching value FK in the child table.
+
+one more:-
+- ON UPDATE CASCADE = When a PK is updated in the parent table column, matching value is changed of the FK in the child table.
+
+*** Commands ***
+-- set ON DELETE and UPDATE clause when creating table
+
+CREATE TABLE table1 (
+    column1 datatype,
+    FOREIGN KEY (column1) REFERENCES table2(column2)
+    ON DELETE {SET NULL | CASCADE}
+);
+
+or 
+
+CREATE TABLE table1 (
+    column1 datatype,
+    FOREIGN KEY (column1) REFERENCES table2(column2)
+    ON UPDATE CASCADE
+);
+
+
+-- set ON DELETE or ON UPDATE clause after when creating table
+ALTER TABLE table1
+ADD CONSTRAINT foreignKey_constraint_name
+FOREIGN KEY (column1) REFERENCES table2(column2)
+{ON DELETE SET NULL | ON DELETE CASCADE | ON UPDATE CASCADE};
+
+

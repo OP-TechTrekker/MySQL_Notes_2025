@@ -1,0 +1,23 @@
+-:: Lecture note ::-
+- is prepared SQL code that is saved.
+- great if there is a query that is written often.
+- reduces network traffic, increases performance, secure.
+- but increases memory usageof every coonection.
+
+*** Commands ***
+-- to create a stored procedure
+DELIMITER $$
+
+CREATE PROCEDURE procedure_name(IN parameter1 datatype, IN parameter2 datatype, ...)
+BEGIN
+	SQL statements
+END$$
+
+DELIMITER ;
+
+
+-- to call a stored procedure
+CALL procedure_name(argument1, argument2, ...);
+
+-- to drop a stored procedure
+DROP PROCEDURE procedure_name;

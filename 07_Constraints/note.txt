@@ -1,0 +1,189 @@
+-:: Lecture note and https://www.w3schools.com/sql/sql_primarykey.asp ::-
+- We can add these constraint while creating table or after it. 
+
+- UNIQUE constraints assures that all value in the column are different.
+
+- NOT NULL constraints assures that all value in the column are not null.
+
+- CHECK constraint is used to limit what values can be placed in the column
+
+- DEFAULT constraint is used to set a default value for a column.
+
+- PRIMARY KEY constraint uniquely identifies each record in a table. 
+  Primary keys must contain UNIQUE values, and cannot contain NULL values.
+  A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).
+
+- AUTO INCREMENT constraint can be applied to a column that is set as a key. Whenever we insert a row, our primary key can be 
+  populated automatically (each subsequent row will automatically be incremented). 
+  MySQL uses the AUTO_INCREMENT keyword to perform an auto-increment feature.
+  By default, the starting value for AUTO_INCREMENT is 1, and it will increment by 1 for each new record.
+  
+- FOREIGN KEY constraint: think of it as a primary key from one table, that can be found within a different table.
+  Using a foreign key we can establish link between tables. 
+  for eg: there are two tables: transactions(transaction_id[primary key], amount, customer_id)  and 
+                                customers(customer_id[primary key], first_name, last_name)
+    The "customer_id" column in the "customers" table is the PRIMARY KEY in the "customers" table.
+    The "customer_id" column in the "transactions" table is a FOREIGN KEY in the "transactions" table.
+    the "customer_id" column in the "transactions" table points to the "customer_id" column in the "customers" table.
+    In "transactions" table, if i were to take a look at "customer_id" who initiated the transaction,
+    i could refer to the "customers table" then find the first_name and last_name of that customer.
+  Also, any action that would result in breaking of link created by foreign keys between the tables, will be prevented.
+  The FOREIGN KEY constraint is used to prevent actions that would destroy links between tables.
+  A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
+  The table with the foreign key is called the child table, and the table with the primary key is called the referenced 
+  or parent table.
+  The FOREIGN KEY constraint prevents invalid data from being inserted into the foreign key column, 
+  because it has to be one of the values contained in the parent table.
+
+
+*** Commands ***
+1] UNIQUE.
+-- To specify constraints while creating table.
+CREATE TABLE table_name (
+    column1 datatype UNIQUE,
+    column2 datatype UNIQUE,
+    ....
+);
+
+-- To create a UNIQUE constraint on the column when the table is already created.
+ALTER TABLE table_name
+ADD UNIQUE (column_name);
+
+-- To name a UNIQUE constraint, and to define a UNIQUE constraint on multiple columns when the table is already created.
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name
+UNIQUE (column_name1, column_name2);
+
+-- To drop a UNIQUE constraint
+ALTER TABLE table_name
+DROP INDEX constraint_name;
+
+
+2] NOT NULL
+-- To specify constraints while creating table.
+CREATE TABLE table_name (
+    column1 datatype NOT NULL,
+    column2 datatype NOT NULL,
+    ....
+);
+
+-- To create a NOT NULL constraint on the column when the table is already created.
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype NOT NULL;
+
+-- to remove not null constraint
+ALTER TABLE table_name
+MODIFY column_name datatype;
+
+
+3] CHECK
+-- To create a CHECK constraint on  column when creating table.
+CREATE TABLE table_name (
+    column_name datatype,
+    CHECK (column_name condition)
+);
+
+-- To create a CHECK constraint on the column when the table is already created.
+ALTER TABLE table_name
+ADD CHECK (column_name condition);
+
+or else
+
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name
+CHECK (column_name condition);   -- if we want to name the constraint
+
+-- To name a CHECK constraint, and for defining CHECK constraint on multiple columns when the table is already created.
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name
+CHECK (column_name1 condition AND column_name2 condition);
+
+-- To drop a CHECK constraint.
+ALTER TABLE Persons
+DROP CHECK constraint_name;
+
+
+4] DEFAULT
+-- To create a DEFAULT constraint on  column when creating  table.
+CREATE TABLE table_name (
+    column_name datatype DEFAULT value;
+);
+
+-- To create a DEFAULT constraint on the column when the table is already created.
+ALTER TABLE table_name
+ALTER column_name SET DEFAULT value;
+
+-- To drop a DEFAULT constraint.
+ALTER TABLE table_name
+ALTER column_name DROP DEFAULT;
+
+
+5] PRIMARY KEY
+-- To specify constraints while creating table.
+CREATE TABLE table_name (
+    column1 datatype PRIMARY KEY,
+);
+
+-- To create a PRIMARY KEY constraint on column when the table is already created.
+ALTER TABLE table_name
+ADD PRIMARY KEY (column_name);
+
+-- To drop a PRIMARY KEY constraint.
+ALTER TABLE table_name
+DROP PRIMARY KEY;
+
+-- To allow naming of a PRIMARY KEY constraint, and for defining a PRIMARY KEY constraint on multiple columns.
+CREATE TABLE table_name (
+    column1 datatype NOT NULL,
+    column2 datatype NOT NULL,
+    column3 datatype,
+    ..
+    CONSTRAINT constraint_name PRIMARY KEY (column1,column2)
+);
+/* Note: above there is only ONE PRIMARY KEY (constraint_name). 
+However, the VALUE of the primary key is made up of TWO COLUMNS (column1 + column2). */
+
+-- To allow naming of a PRIMARY KEY constraint, and for defining a PRIMARY KEY constraint on multiple columns.
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name PRIMARY KEY (column1,column2);
+/*  If you use ALTER TABLE to add a primary key, the primary key column(s) must have been declared 
+to not contain NULL values (when the table was first created). */
+
+
+6] AUTO_INCREMENT
+-- The following SQL statement defines the  column to be an auto-increment primary key field in the table:
+CREATE TABLE table_name (
+    column1 datatype KEY_CONSTRAINT AUTO_INCREMENT,
+    column2 datatype,
+    column3 datatype,
+    ..
+);
+
+-- To let the AUTO_INCREMENT sequence start with another value, use the following SQL statement:
+ALTER TABLE table_name AUTO_INCREMENT=100;
+
+
+7] FOREIGN KEY
+-- The following SQL creates a FOREIGN KEY on the column1 column when the table1 table is created,
+   here column2 is primary key of table2 and column1 is refering column2:
+CREATE TABLE table1 (
+    column1 datatype,
+    FOREIGN KEY (column1) REFERENCES table2(column2)
+);
+
+-- To allow naming of a FOREIGN KEY constraint , and for defining a FOREIGN KEY constraint on multiple columns
+use the following SQL syntax:
+CREATE TABLE table1 (
+    column1 datatype,
+    CONSTRAINT foreignKey_constraint_name FOREIGN KEY (column1) REFERENCES table2(column2)
+);
+
+-- To drop a FOREIGN KEY constraint:
+ALTER TABLE table_name
+DROP FOREIGN KEY foreignKey_constraint_name;
+
+-- To create a FOREIGN KEY on the column when the table is already created & allow naming of a FOREIGN KEY constraint,
+   and for defining a FOREIGN KEY constraint on multiple columns:
+ALTER TABLE table1
+ADD CONSTRAINT foreignKey_constraint_name
+FOREIGN KEY (column1) REFERENCES table2(column2);
